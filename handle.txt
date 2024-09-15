@@ -1,0 +1,13 @@
+our code should handle the following things:
+1. register a new user
+2. unverified existing user
+3. verified existing user
+
+** algorithm **
+IF checkUserByEmail EXISTS THEN
+    IF checkUserByEmail.isVerified THEN
+        continue (do nothing)
+    ELSE
+        verifyUser()
+ELSE
+    createNewUser()
