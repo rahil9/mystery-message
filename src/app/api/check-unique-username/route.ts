@@ -12,7 +12,7 @@ export async function GET(request:Request) {
         const {searchParams} = new URL(request.url)
         // taking out username parameter from multiple other params
         const queryParam = {
-            username: searchParams.get('Username')
+            username: searchParams.get('username')
         }
         // validating with zod
         const result = UsernameQuerySchema.safeParse(queryParam)
