@@ -82,16 +82,16 @@ const page = () => {
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
             <div className="text-center">
                 <h1 className="text-4xl font-extrabold text-black tracking-tight lg:text-5xl mb-6">
-                    Welcome Back to True Feedback
+                    Welcome to Mystery Feedback
                 </h1>
-                <p className="mb-4">Sign in to continue your secret conversations</p>
+                <p className="mb-4 text-gray-800">Sign in to continue your secret conversations</p>
             </div>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <FormField name="username" control={form.control}
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="text-black">Username</FormLabel>
+                            <FormLabel className="text-gray-800">Username</FormLabel>
                             <Input {...field} placeholder="username" onChange={(e)=>{
                                 field.onChange(e)
                                 setUsername(e.target.value)}} />
@@ -114,7 +114,7 @@ const page = () => {
                     <FormField name="email" control={form.control}
                         render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel className="text-gray-800">Email</FormLabel>
                             <Input {...field} placeholder="email" />
                             <FormMessage />
                         </FormItem> 
@@ -124,7 +124,7 @@ const page = () => {
                     control={form.control}
                     render={({ field }) => (
                         <FormItem>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel className="text-gray-800">Password</FormLabel>
                         <Input type="password" placeholder="password" {...field} />
                         <FormMessage />
                         </FormItem>
@@ -142,7 +142,7 @@ const page = () => {
                 </form>
             </Form>
             <div className="text-center mt-4">
-                <p>
+                <p className="text-gray-800">
                     Already a member?{' '}
                     <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
                     Sign in
