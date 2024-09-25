@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { useDebounceValue } from 'usehooks-ts'
+import { useDebounceCallback } from 'usehooks-ts'
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { signUpSchema } from "@/schemas/signUpSchema"
@@ -23,7 +23,7 @@ const page = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const router = useRouter()
     const {toast} = useToast()
-    const debouncedUsername = useDebounceValue(username, 500) 
+    const debounced = useDebounceCallback(setUsername, 500) 
 
     // zod implementation
     // <z.infer<typeof signUpSchema>> not necessary but a good ts practise 
@@ -38,11 +38,11 @@ const page = () => {
 
     useEffect(() => {
         const checkUniqueUsername = async () => {
-            if (debouncedUsername) {
+            if (username) {
                 setIsCheckingUsername(true)
                 setUsernameMessage('')
                 try {
-                    const respsonse = await axios.get(`/api/check-unique-username?username=${debouncedUsername}`)
+                    const respsonse = await axios.get(`/api/check-unique-username?username=${username}`)
                     setUsernameMessage(respsonse.data.message)
                 } catch (error) {
                     const axiosError = error as AxiosError<APIResponse>
@@ -53,7 +53,7 @@ const page = () => {
             }
         }
         checkUniqueUsername()
-    }, [debouncedUsername])
+    }, [username])
 
     const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
         setIsSubmitting(true)
@@ -92,10 +92,10 @@ const page = () => {
                         render={({ field }) => (
                         <FormItem>
                             <FormLabel className="text-gray-800">Username</FormLabel>
-                            <Input {...field} placeholder="username" onChange={(e)=>{
+                            <Input {...field} placeholder="username" className="text-gray-800" onChange={(e)=>{
                                 field.onChange(e)
-                                setUsername(e.target.value)}} />
-                                {isCheckingUsername && <Loader2 className="animate-spin" />}
+                                debounced(e.target.value)}} />
+                                {isCheckingUsername && <Loader2 className="animate-spin text-black" />}
                                 {!isCheckingUsername && usernameMessage && (
                                     <p
                                         className={`text-sm ${
@@ -125,7 +125,7 @@ const page = () => {
                     render={({ field }) => (
                         <FormItem>
                         <FormLabel className="text-gray-800">Password</FormLabel>
-                        <Input type="password" placeholder="password" {...field} />
+                        <Input type="password" className="text-gray-800" placeholder="password" {...field} />
                         <FormMessage />
                         </FormItem>
                     )}
