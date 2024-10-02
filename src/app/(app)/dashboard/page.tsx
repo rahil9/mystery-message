@@ -3,7 +3,7 @@ import { MessageCard } from '@/components/MessageCards'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/components/ui/use-toast'
 import { Message, User } from '@/model/User'
 import { acceptSchema } from '@/schemas/acceptSchema'
 import { APIResponse } from '@/types/APIResponse'
@@ -175,7 +175,7 @@ const page = () => {
                 {messages.length > 0 ? (
                 messages.map((message, index) => (
                     <MessageCard
-                        // key={message._id}
+                        key={message._id}
                         message={message}
                         onMessageDelete={handleDeleteMessage}
                     />
