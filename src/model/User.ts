@@ -7,7 +7,7 @@ export interface Message extends Document {
     createdAt: Date
 }
 
-const MessageSchema: Schema<Message> = new Schema({
+const MessageSchema: Schema<Message> = new mongoose.Schema({
     content: {
         type: String, // in mongoose it's String and in ts it's string
         required: true
@@ -26,11 +26,11 @@ export interface User extends Document {
     verifyCode: string;
     verifyCodeExpiry: Date;
     isVerified: boolean;
-    isAcceptingMessage: boolean;
+    isAcceptingMessages: boolean;
     messages: Message[]
 }
 
-const UserSchema: Schema<User> = new Schema({
+const UserSchema: Schema<User> = new mongoose.Schema({
     username: {
         type: String,
         required: [true, "username is required"],
@@ -59,7 +59,7 @@ const UserSchema: Schema<User> = new Schema({
         type: Boolean,
         default: false
     },
-    isAcceptingMessage: {
+    isAcceptingMessages: {
         type: Boolean,
         default: true
     },

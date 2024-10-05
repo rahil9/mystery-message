@@ -1,5 +1,3 @@
-import { log } from "console";
-import { console } from "inspector";
 import mongoose from "mongoose";
 
 type ConnectionObject = {

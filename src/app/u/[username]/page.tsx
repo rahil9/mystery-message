@@ -23,7 +23,7 @@ import { APIResponse } from '@/types/APIResponse';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
-import { toast } from '@/hooks/use-toast';
+import { toast } from '@/components/ui/use-toast';
 
 const specialChar = '||';
 

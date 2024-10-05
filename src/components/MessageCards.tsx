@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios, { AxiosError } from 'axios';
-// import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { X } from 'lucide-react';
 import { Message } from '@/model/User';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -81,7 +81,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           </AlertDialog>
         </div>
         <div className="text-sm">
-          {/* {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')} */}
+          {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
       <CardContent></CardContent>
